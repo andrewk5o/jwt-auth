@@ -6,11 +6,13 @@ const mongoose = require("mongoose")
 const PORT = process.env.PORT || 5000;
 const app = express();
 const router = require("./router/index.js");
+const errorMiddleware = require("./middlewares/error-middleware");
 
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors());
 app.use("/api", router);
+app.use(errorMiddleware);
 
 const start = async () => {
     try {
